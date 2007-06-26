@@ -1,7 +1,7 @@
 %define LNG cs
 Summary: Czech Linux Manual Pages
 Name: man-pages-%LNG
-Version: 0.17.20070219
+Version: 0.17.20070226
 Release: %mkrel 1
 License: Distributable
 Group: System/Internationalization
