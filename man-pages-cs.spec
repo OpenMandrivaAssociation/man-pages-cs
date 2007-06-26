@@ -7,7 +7,6 @@ License: Distributable
 Group: System/Internationalization
 URL: http://sweb.cz/tropikhajma/man-pages-cs/index.html
 Source: man-pages-cs-%{version}.tar.bz2
-Icon: books-%LNG.xpm
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: man => 1.5j-8mdk
 BuildRequires: sed grep man
