@@ -1,12 +1,12 @@
 %define LNG cs
 Summary: Czech Linux Manual Pages
 Name: man-pages-%LNG
-Version: 0.17.20070905
-Release: %mkrel 2
+Version: 0.17.20080113
+Release: %mkrel 1
 License: Distributable
 Group: System/Internationalization
 URL: http://sweb.cz/tropikhajma/man-pages-cs/index.html
-Source: man-pages-cs-%{version}.tar.lzma
+Source: http://sweb.cz/tropikhajma/man-pages-cs/%name-%version.tar.lzma
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: man => 1.5j-8mdk
 BuildRequires: sed grep man
