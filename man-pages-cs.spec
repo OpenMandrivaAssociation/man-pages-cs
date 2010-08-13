@@ -3,7 +3,7 @@
 Summary:	Czech Linux Manual Pages
 Name:		man-pages-%LNG
 Version:	0.18.20090209
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Distributable
 Group:		System/Internationalization
 URL:		http://tropikhajma.sweb.cz/man-pages-cs/
@@ -46,22 +46,22 @@ rm ./man-pages/man1/dir.1
 rm ./man-pages/man1/vdir.1 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_mandir}/%LNG/
-make install DESTDIR=$RPM_BUILD_ROOT MANDIR=%{_mandir}/%LNG/
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/%{_mandir}/%LNG/
+make install DESTDIR=%{buildroot} MANDIR=%{_mandir}/%LNG/
 
-LANG=%LNG DESTDIR=$RPM_BUILD_ROOT /usr/sbin/makewhatis $RPM_BUILD_ROOT/%_mandir/%LNG
+LANG=%LNG DESTDIR=%{buildroot} /usr/sbin/makewhatis %{buildroot}/%_mandir/%LNG
 
-mkdir -p $RPM_BUILD_ROOT/etc/cron.weekly
+mkdir -p %{buildroot}/etc/cron.weekly
 
-cat > $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%LNG.cron << EOF
+cat > %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron << EOF
 #!/bin/bash
 LANG=%LNG /usr/sbin/makewhatis %_mandir/%LNG
 exit 0
 EOF
-chmod a+x $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%LNG.cron
+chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron
 
-mkdir -p  $RPM_BUILD_ROOT/var/cache/man/%LNG
+mkdir -p  %{buildroot}/var/cache/man/%LNG
 
 %postun
 # 0 means deleting the package
@@ -74,7 +74,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,man,755)
