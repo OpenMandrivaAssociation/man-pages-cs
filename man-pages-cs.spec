@@ -8,7 +8,7 @@ License:	Distributable
 Group:		System/Internationalization
 URL:		http://tropikhajma.sweb.cz/man-pages-cs/
 Source:		http://tropikhajma.sweb.cz/%{name}/%{name}-%{version}.tar.lzma
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	man => 1.5j-8mdk
 BuildRequires:	sed 
@@ -29,7 +29,7 @@ organized into the following sections:
 	Section 2:  System calls
 	Section 3:  Libc calls
 	Section 4:  Devices (e.g., hd, sd)
-	Section 5:  File formats and protocols (e.g., wtmp, /etc/passwd, nfs)
+	Section 5:  File formats and protocols (e.g., wtmp, %{_sysconfdir}passwd, nfs)
 	Section 6:  Games (intro only)
 	Section 7:  Conventions, macro packages, etc. (e.g., nroff, ascii)
 	Section 8:  System administration (intro only)
@@ -50,20 +50,20 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/%{_mandir}/%LNG/
 make install DESTDIR=%{buildroot} MANDIR=%{_mandir}/%LNG/
 
-LANG=%LNG DESTDIR=%{buildroot} /usr/sbin/makewhatis %{buildroot}/%_mandir/%LNG
+LANG=%LNG DESTDIR=%{buildroot} %{_sbindir}/makewhatis %{buildroot}/%_mandir/%LNG
 
-mkdir -p %{buildroot}/etc/cron.weekly
+mkdir -p %{buildroot}%{_sysconfdir}/cron.weekly
 
-cat > %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron << EOF
+cat > %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron << EOF
 #!/bin/bash
-LANG=%LNG /usr/sbin/makewhatis %_mandir/%LNG
+LANG=%LNG %{_sbindir}/makewhatis %_mandir/%LNG
 exit 0
 EOF
-chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron
+chmod a+x %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
 
 mkdir -p  %{buildroot}/var/cache/man/%LNG
 
-touch $RPM_BUILD_ROOT/var/cache/man/%LNG/whatis
+touch %{buildroot}/var/cache/man/%LNG/whatis
 
 %postun
 # 0 means deleting the package
@@ -88,4 +88,5 @@ rm -rf %{buildroot}
 %dir /var/cache/man/%LNG
 %ghost %config(noreplace) /var/cache/man/%LNG/whatis
 %_mandir/%LNG/man*
-%config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LNG.cron
+%_mandir/%LNG/whatis
+%config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
