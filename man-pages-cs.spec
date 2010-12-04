@@ -63,6 +63,8 @@ chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron
 
 mkdir -p  %{buildroot}/var/cache/man/%LNG
 
+touch $RPM_BUILD_ROOT/var/cache/man/%LANG/whatis
+
 %postun
 # 0 means deleting the package
 if [ "$1" = "0" ]; then
@@ -73,6 +75,9 @@ if [ "$1" = "0" ]; then
    fi
 fi
 
+%post
+%create_ghostfile /var/cache/man/%LANG/whatis root root 644
+
 %clean
 rm -rf %{buildroot}
 
@@ -81,6 +86,6 @@ rm -rf %{buildroot}
 %doc README* Changelog CONTRIB.old
 %dir %_mandir/%LNG
 %dir /var/cache/man/%LNG
-%verify (not md5 mtime size) /var/cache/man/%LNG/whatis
+%ghost %config(noreplace) /var/cache/man/%LANG/whatis
 %_mandir/%LNG/man*
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LNG.cron
