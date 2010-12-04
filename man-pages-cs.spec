@@ -63,7 +63,7 @@ chmod a+x %{buildroot}/etc/cron.weekly/makewhatis-%LNG.cron
 
 mkdir -p  %{buildroot}/var/cache/man/%LNG
 
-touch $RPM_BUILD_ROOT/var/cache/man/%LANG/whatis
+touch $RPM_BUILD_ROOT/var/cache/man/%LNG/whatis
 
 %postun
 # 0 means deleting the package
