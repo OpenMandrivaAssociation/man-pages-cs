@@ -76,7 +76,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %post
-%create_ghostfile /var/cache/man/%LANG/whatis root root 644
+%create_ghostfile /var/cache/man/%LNG/whatis root root 644
 
 %clean
 rm -rf %{buildroot}
@@ -86,6 +86,6 @@ rm -rf %{buildroot}
 %doc README* Changelog CONTRIB.old
 %dir %_mandir/%LNG
 %dir /var/cache/man/%LNG
-%ghost %config(noreplace) /var/cache/man/%LANG/whatis
+%ghost %config(noreplace) /var/cache/man/%LNG/whatis
 %_mandir/%LNG/man*
 %config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LNG.cron
