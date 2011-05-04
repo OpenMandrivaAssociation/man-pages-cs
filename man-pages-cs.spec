@@ -3,7 +3,7 @@
 Summary:	Czech Linux Manual Pages
 Name:		man-pages-%LNG
 Version:	0.18.20090209
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	Distributable
 Group:		System/Internationalization
 URL:		http://tropikhajma.sweb.cz/man-pages-cs/
