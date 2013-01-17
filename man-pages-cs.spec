@@ -3,7 +3,7 @@
 Summary:	Czech Linux Manual Pages
 Name:		man-pages-%LNG
 Version:	0.18.20090209
-Release:	%mkrel 8
+Release:	9
 License:	Distributable
 Group:		System/Internationalization
 URL:		http://tropikhajma.sweb.cz/man-pages-cs/
@@ -50,13 +50,13 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/%{_mandir}/%LNG/
 make install DESTDIR=%{buildroot} MANDIR=%{_mandir}/%LNG/
 
-LANG=%LNG DESTDIR=%{buildroot} %{_sbindir}/makewhatis %{buildroot}/%_mandir/%LNG
+LANG=%LNG DESTDIR=%{buildroot} %{_bindir}/mandb %{buildroot}/%_mandir/%LNG
 
 mkdir -p %{buildroot}%{_sysconfdir}/cron.weekly
 
 cat > %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron << EOF
 #!/bin/bash
-LANG=%LNG %{_sbindir}/makewhatis %_mandir/%LNG
+LANG=%LNG %{_bindir}/mandb %_mandir/%LNG
 exit 0
 EOF
 chmod a+x %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
