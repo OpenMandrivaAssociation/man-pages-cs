@@ -3,7 +3,7 @@
 Summary:	Czech Linux Manual Pages
 Name:		man-pages-%{LNG}
 Version:	0.18.20090209
-Release:	18
+Release:	19
 License:	Distributable
 Group:		System/Internationalization
 Url:		http://tropikhajma.sweb.cz/man-pages-cs/
@@ -16,6 +16,7 @@ BuildRequires:	sed
 Requires:	locales-%{LNG}
 Requires:	man
 Autoreqprov:	false
+Conflicts:	filesystem < 3.0-17
 
 %description
 A large collection of man pages (reference material) from the Linux
@@ -76,12 +77,10 @@ fi
 
 %files
 %doc README* Changelog CONTRIB.old
-%dir %{_mandir}/%{LNG}
 %dir /var/cache/man/%{LNG}
 %ghost %config(noreplace) /var/cache/man/%{LNG}/whatis
 %{_mandir}/%{LNG}/man*
 %{_mandir}/%{LNG}/cat*
-%{_mandir}/%{LNG}/CACHEDIR.TAG*
 %{_mandir}/%{LNG}/index.db*
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%{LNG}.cron
 
