@@ -6,7 +6,7 @@ Version:	0.18.20090209
 Release:	22
 License:	Distributable
 Group:		System/Internationalization
-Url:		http://tropikhajma.sweb.cz/man-pages-cs/
+Url:		https://tropikhajma.sweb.cz/man-pages-cs/
 Source0:	http://tropikhajma.sweb.cz/%{name}/%{name}-%{version}.tar.lzma
 BuildArch:	noarch
 
