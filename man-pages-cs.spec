@@ -10,6 +10,7 @@ Url:		https://tropikhajma.sweb.cz/man-pages-cs/
 Source0:	http://tropikhajma.sweb.cz/%{name}/%{name}-%{version}.tar.lzma
 BuildArch:	noarch
 
+BuildRequires:	make
 BuildRequires:	grep
 BuildRequires:	man
 BuildRequires:	sed
